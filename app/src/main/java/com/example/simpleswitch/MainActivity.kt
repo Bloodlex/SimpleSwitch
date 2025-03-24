@@ -54,10 +54,10 @@ class MainActivity : AppCompatActivity() {
     private fun updateStatusText(isChecked: Boolean) {
         if (isChecked) {
             statusText.text = getString(R.string.clean)
-            statusText.setTextColor(getColor(android.R.color.holo_green_dark)) // ✅
+            statusText.setTextColor(getColor(android.R.color.holo_green_dark))
         } else {
             statusText.text = getString(R.string.dirty)
-            statusText.setTextColor(getColor(android.R.color.holo_red_dark))   // ✅
+            statusText.setTextColor(getColor(android.R.color.holo_red_dark))
         }
     }
 
