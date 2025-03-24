@@ -10,6 +10,8 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+private const val DATE_PATTERN = "dd-MM-yyyy HH:mm:ss"
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var switchToggle: SwitchCompat
@@ -50,17 +52,23 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateStatusText(isChecked: Boolean) {
-        statusText.text = "Switch is ${if (isChecked) "ON" else "OFF"}"
+        if (isChecked) {
+            statusText.text = getString(R.string.clean)
+            statusText.setTextColor(getColor(android.R.color.holo_green_dark)) // ✅
+        } else {
+            statusText.text = getString(R.string.dirty)
+            statusText.setTextColor(getColor(android.R.color.holo_red_dark))   // ✅
+        }
     }
 
     private fun updateTimestampText(timeMillis: Long) {
         if (timeMillis == 0L) {
-            timestampText.text = "Last modified: never"
+            timestampText.text = getString(R.string.never)
         } else {
             val date = Date(timeMillis)
-            val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault())
+            val formatter = SimpleDateFormat(DATE_PATTERN, Locale.getDefault())
             val formattedDate = formatter.format(date)
-            timestampText.text = "Last modified: $formattedDate"
+            timestampText.text = formattedDate
         }
     }
 }
